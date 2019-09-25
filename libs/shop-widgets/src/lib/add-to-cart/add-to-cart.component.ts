@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'nx-components-lib-add-to-cart',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-to-cart.component.scss']
 })
 export class AddToCartComponent implements OnInit {
+  @Input() item: string;
+  @Output() itemAdded: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public addToCart(item: string) {
+    this.itemAdded.emit(this.item);
   }
 
 }
