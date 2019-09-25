@@ -16,6 +16,12 @@
     },
     "shop-widgets": {
       "tags": []
+    },
+    "elements/shop-widgets-e2e": {
+      "tags": []
+    },
+    "elements-shop-widgets": {
+      "tags": []
     }
   }
 }

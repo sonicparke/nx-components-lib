@@ -21,13 +21,8 @@
             "polyfills": "apps/shop/src/polyfills.ts",
             "tsConfig": "apps/shop/tsconfig.app.json",
             "aot": false,
-            "assets": [
-              "apps/shop/src/favicon.ico",
-              "apps/shop/src/assets"
-            ],
-            "styles": [
-              "apps/shop/src/styles.scss"
-            ],
+            "assets": ["apps/shop/src/favicon.ico", "apps/shop/src/assets"],
+            "styles": ["apps/shop/src/styles.scss"],
             "scripts": [
               {
                 "input": "node_modules/document-register-element/build/document-register-element.js"
@@ -90,10 +85,7 @@
               "apps/shop/tsconfig.app.json",
               "apps/shop/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/shop/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/shop/**"]
           }
         },
         "test": {
@@ -127,13 +119,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/shop-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/shop-e2e/**"
-            ]
+            "tsConfig": ["apps/shop-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/shop-e2e/**"]
           }
         }
       }
@@ -158,10 +145,7 @@
               "libs/shop-widgets/tsconfig.lib.json",
               "libs/shop-widgets/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shop-widgets/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shop-widgets/**"]
           }
         },
         "test": {
@@ -176,6 +160,132 @@
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
+        }
+      }
+    },
+    "elements-shop-widgets": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/elements/shop-widgets",
+      "sourceRoot": "apps/elements/shop-widgets/src",
+      "prefix": "nx-components-lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/elements/shop-widgets",
+            "index": "apps/elements/shop-widgets/src/index.html",
+            "main": "apps/elements/shop-widgets/src/main.ts",
+            "polyfills": "apps/elements/shop-widgets/src/polyfills.ts",
+            "tsConfig": "apps/elements/shop-widgets/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/elements/shop-widgets/src/favicon.ico",
+              "apps/elements/shop-widgets/src/assets"
+            ],
+            "styles": ["apps/elements/shop-widgets/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/elements/shop-widgets/src/environments/environment.ts",
+                  "with": "apps/elements/shop-widgets/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "elements-shop-widgets:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "elements-shop-widgets:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "elements-shop-widgets:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/elements/shop-widgets/tsconfig.app.json",
+              "apps/elements/shop-widgets/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/elements/shop-widgets/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/elements/shop-widgets/jest.config.js",
+            "tsConfig": "apps/elements/shop-widgets/tsconfig.spec.json",
+            "setupFile": "apps/elements/shop-widgets/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "elements/shop-widgets-e2e": {
+      "root": "apps/elements/shop-widgets-e2e",
+      "sourceRoot": "apps/elements/shop-widgets-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/elements/shop-widgets-e2e/cypress.json",
+            "tsConfig": "apps/elements/shop-widgets-e2e/tsconfig.e2e.json",
+            "devServerTarget": "elements-shop-widgets:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "elements-shop-widgets:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/elements/shop-widgets-e2e/tsconfig.e2e.json"],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/elements/shop-widgets-e2e/**"
+            ]
+          }
         }
       }
     }
