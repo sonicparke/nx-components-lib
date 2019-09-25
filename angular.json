@@ -120,6 +120,44 @@
           }
         }
       }
+    },
+    "shop-widgets": {
+      "projectType": "library",
+      "root": "libs/shop-widgets",
+      "sourceRoot": "libs/shop-widgets/src",
+      "prefix": "nx-components-lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/shop-widgets/tsconfig.lib.json",
+            "project": "libs/shop-widgets/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shop-widgets/tsconfig.lib.json",
+              "libs/shop-widgets/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shop-widgets/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shop-widgets/jest.config.js",
+            "tsConfig": "libs/shop-widgets/tsconfig.spec.json",
+            "setupFile": "libs/shop-widgets/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

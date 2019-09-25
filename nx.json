@@ -13,6 +13,9 @@
     },
     "shop": {
       "tags": []
+    },
+    "shop-widgets": {
+      "tags": []
     }
   }
 }
