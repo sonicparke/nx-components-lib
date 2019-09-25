@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-components-lib/shop-widgets": ["libs/shop-widgets/src/index.ts"]
+      "@nx-components-lib/shop-widgets": ["libs/shop-widgets/src/index.ts"],
+      "@nx-components-lib/shop-widgets/components" : ["libs/shop-widgets/src/components.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
