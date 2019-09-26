@@ -1,1 +1,10 @@
-<nx-components-lib-add-to-cart></nx-components-lib-add-to-cart>
+<ng-container *ngFor="let item of items">
+  <nx-components-lib-add-to-cart
+    [item]="item"
+    (itemAdded)="itemAdded($event)"
+  ></nx-components-lib-add-to-cart>
+</ng-container>
+
+<h1>{{ alert }} Added To Cart!</h1>
+
+<nx-components-lib-cart></nx-components-lib-cart>
