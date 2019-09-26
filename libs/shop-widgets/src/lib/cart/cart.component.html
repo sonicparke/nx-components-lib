@@ -1,7 +1,6 @@
-<p>cart works!</p>
-
+<h2>Your Cart</h2>
 <div>
   <ul>
-    <li *ngFor="let item of itemsInCart | async">{{ item }}</li>
+    <li *ngFor="let item of itemsInCart">{{ item?.name }}</li>
   </ul>
 </div>

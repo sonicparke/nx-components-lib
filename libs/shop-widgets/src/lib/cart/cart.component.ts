@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CartService } from './cart.service';
+import { scan } from 'rxjs/operators';
 
 @Component({
   selector: 'nx-components-lib-cart',
@@ -8,12 +8,40 @@ import { CartService } from './cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  public itemsInCart: BehaviorSubject<string[]> = new BehaviorSubject(null);
+  @Input() public addItem: BehaviorSubject<any> = new BehaviorSubject([]);
+  public itemsInCart;
 
-  constructor(private cartService: CartService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.itemsInCart = this.cartService.itemsInCart;
+    this.addItem
+      .pipe(
+        scan((acc, curr) => {
+          let obj;
+          let newArray;
+
+          if (curr !== null) {
+            obj = {
+              'name': curr,
+              'count': 0
+            }
+            newArray = [obj];
+          }
+
+          if (acc.length > 0) {
+            newArray = [...acc, obj];
+          }
+
+          if (newArray) {
+            return newArray;
+          } else {
+            return []
+          }
+        }, [])
+      )
+      .subscribe((result) => {
+        this.itemsInCart = result;
+      });
   }
 
 }

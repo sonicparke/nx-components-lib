@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-// tslint:disable-next-line:nx-enforce-module-boundaries
-import { CartService } from '@nx-components-lib/shop-widgets/components';
+import { Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'nx-components-lib-root',
@@ -8,14 +7,13 @@ import { CartService } from '@nx-components-lib/shop-widgets/components';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public item: string;
-  public alert: string;
   public items = ['Rubber Duck', 'Squeege', 'Shoes']
+  public itemToAdd: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(private cartService: CartService) {}
+  constructor() {}
 
   public itemAdded(_item: string) {
-    this.alert = _item;
+    this.itemToAdd.next(_item);
   }
 
 }

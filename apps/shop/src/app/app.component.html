@@ -5,6 +5,6 @@
   ></nx-components-lib-add-to-cart>
 </ng-container>
 
-<h1>{{ alert }} Added To Cart!</h1>
-
-<nx-components-lib-cart></nx-components-lib-cart>
+<nx-components-lib-cart
+  [addItem]="itemToAdd"
+></nx-components-lib-cart>
