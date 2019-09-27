@@ -25,25 +25,33 @@
     "update:check": "ng update",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "build:lib": "ng build --project=shop-widgets",
+    "build:element": "ng build --project=elements-shop-widgets --prod --output-hashing=none",
+    "clean:static": "cd apps/static && rm main-es2015.js && rm polyfills-es2015.js && rm runtime-es2015.js && rm styles.css",
+    "copy:element-scripts": "cp dist/apps/elements/shop-widgets/main-es2015.js apps/static/main-es2015.js && cp dist/apps/elements/shop-widgets/polyfills-es2015.js apps/static/polyfills-es2015.js && cp dist/apps/elements/shop-widgets/runtime-es2015.js apps/static/runtime-es2015.js && cp dist/apps/elements/shop-widgets/styles.css apps/static/styles.css",
+    "build:all": "npm run build:lib && npm run build:element && npm run clean:static && npm run copy:element-scripts"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^8.2.0",
+    "@angular/cdk": "~8.2.1",
     "@angular/common": "^8.2.0",
     "@angular/compiler": "^8.2.0",
     "@angular/core": "^8.2.0",
     "@angular/elements": "^8.2.8",
     "@angular/forms": "^8.2.0",
+    "@angular/material": "^8.2.1",
     "@angular/platform-browser": "^8.2.0",
     "@angular/platform-browser-dynamic": "^8.2.0",
     "@angular/router": "^8.2.0",
     "@nrwl/angular": "8.5.1",
     "core-js": "^2.5.4",
+    "document-register-element": "^1.7.2",
+    "hammerjs": "^2.0.8",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "^0.9.1",
-    "document-register-element": "^1.7.2"
+    "zone.js": "^0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.3",
