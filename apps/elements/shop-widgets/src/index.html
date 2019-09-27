@@ -8,6 +8,15 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>
-    <nx-components-lib-root></nx-components-lib-root>
+
+    <nx-components-lib-add-to-cart
+      item="my item"
+      (itemAdded)="itemAdded($event)"
+    ></nx-components-lib-add-to-cart>
+
+    <nx-components-lib-cart
+      [addItem]="itemToAdd"
+    ></nx-components-lib-cart>
+
   </body>
 </html>
