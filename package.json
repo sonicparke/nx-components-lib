@@ -26,6 +26,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
+    "static": "cd apps/static && http-server",
     "build:lib": "ng build --project=shop-widgets",
     "build:element": "ng build --project=elements-shop-widgets --prod --output-hashing=none",
     "clean:static": "cd apps/static && rm main-es2015.js && rm polyfills-es2015.js && rm runtime-es2015.js && rm styles.css",
