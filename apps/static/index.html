@@ -1,18 +1,30 @@
 <html>
   <head>
-    <script src="runtime-es2015.js" defer></script>
-    <script src="polyfills-es2015.js" defer></script>
-    <script src="main-es2015.js" defer></script>
     <link href="styles.css" rel="stylesheet"></link>
   </head>
   <body>
     <h1>I'm the static html. I've imported this as an angular element</h1>
     <nx-components-lib-add-to-cart
       item="my item"
-      (itemAdded)="itemAdded($event)"
     ></nx-components-lib-add-to-cart>
     <nx-components-lib-cart
-      [addItem]="itemToAdd"
     ></nx-components-lib-cart>
+
+    <script src="runtime-es2015.js" defer></script>
+    <script src="polyfills-es2015.js" defer></script>
+    <script src="main-es2015.js" defer></script>
+
+    <script>
+      const addToCardEl = document.getElementsByTagName('nx-components-lib-add-to-cart')[0];
+      const cardEl = document.getElementsByTagName('nx-components-lib-cart')[0];
+
+      addToCardEl.addEventListener('itemAdded', (ev) => {
+        const payload = ev.detail;
+
+        // TODO => assign it to the card component
+      });
+
+
+    </script>
   </body>
 </html>
